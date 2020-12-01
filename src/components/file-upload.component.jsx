@@ -10,25 +10,40 @@ class FileUpload extends Component {
     }
   }
 
+  checkFileType = file => {
+    if(file?.name.split('.').pop() === "apkg") {
+      return true;
+    } else {
+      return false
+    }
+  }
+
   onChangeHandler = e => {
     this.setState({
       selectedFile: e.target.files[0],
     });
+
   }
 
   onClickHandler = e => {
-    const data = new FormData();
-    data.append('file', this.state.selectedFile);
-    axios.post("http://localhost:8000/upload", data, {})
-      .then(res => {
-        console.log(res.statusText);
-      }); 
+    if(this.checkFileType(this.state.selectedFile))
+    {
+      const data = new FormData();
+      data.append('file', this.state.selectedFile);
+      axios.post("http://localhost:8000/upload", data, {})
+        .then(res => {
+          console.log(res.statusText);
+        }); 
+    } else {
+      document.querySelector('#deck').value = "";
+      this.setState({selectedFile: ''});
+    }
   }
 
   render() {
     return(
       <div className="App">
-        <input type="file" name="deck" onChange={this.onChangeHandler} />
+        <input type="file" id="deck" name="deck" onChange={this.onChangeHandler} />
         <button type="button" className="btn btn success btn-block" onClick={this.onClickHandler}>Upload</button>
       </div>
     );
