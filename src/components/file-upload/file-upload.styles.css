@@ -1,0 +1,42 @@
+.file-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(255, 255, 255);
+  padding: 60px;
+  height: 55vh;
+  width: 20vw;
+  z-index: 10;
+  position: relative;
+}
+
+h1 {
+  margin: 0;
+}
+
+.file-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal-container {
+  flex-direction: row !important;
+  align-items: center;
+}
+
+.horizontal-container label {
+  margin: 0;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  border: 1px solid rgb(214, 214, 214);
+  height: 30px;
+}
+
+input[type="text"]::placeholder {
+  color: rgb(214, 214, 214);
+}
